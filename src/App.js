@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import NavbarComponent from "./components/navbar_component";
+import JumbotronComponent from "./components/jumbotron_component";
+import { BrowserRouter, Route } from "react-router-dom";
+import HomeContainer from "./containers/home_container";
+import CreateUserContainer from "./containers/createUser_containter";
+import DetailUserContainer from "./containers/detailUser_container";
+import EditUserContainer from "./containers/editUser_container";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <NavbarComponent />
+        <JumbotronComponent />
+        <BrowserRouter>
+          <Route exact path="/" component={HomeContainer} />
+
+          <Route exact path="/create" component={CreateUserContainer} />
+
+          <Route exact path="/detail/:id" component={DetailUserContainer} />
+
+          <Route exact path="/edit/:id" component={EditUserContainer} />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
-
-export default App;
